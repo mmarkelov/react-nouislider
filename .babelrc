@@ -1,0 +1,4 @@
+{
+  "presets": ["env", "stage-1", "react"],
+  "plugins": [["transform-react-remove-prop-types", { "removeImport": true }]]
+}

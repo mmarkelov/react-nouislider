@@ -1,0 +1,39 @@
+
+header {
+  text-align: center;
+}
+
+.slider {
+  width: 50%;
+  margin: auto;
+}
+
+.code {
+  width: 35%;
+  margin: 40px auto;
+}
+
+ul {
+  list-style-type: none;
+}
+
+li {
+  padding: 10px;
+  color: #fff;
+}
+
+.info {
+  text-align: center;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+a {
+  text-transform: uppercase;
+  color: #fff;
+}
+
+footer a {
+  color: #000;
+  text-transform: none;
+}

@@ -1,0 +1,14 @@
+body {
+  background-color: #2980b9;
+  font-family: Trebuchet MS, serif;
+}
+
+h1, h2 {
+  color: #fff;
+  line-height: 100%;
+  font-size: 100px;
+}
+
+h2 {
+  font-size: 86px;
+}

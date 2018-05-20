@@ -1,0 +1,45 @@
+{
+  "name": "react-nouislider",
+  "private": false,
+  "version": "0.0.1",
+  "description": "React component wrapping leongersen/noUiSlider",
+  "main": "index.js",
+  "scripts": {
+    "build": "babel src -d build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mmarkelov/react-nouislider"
+  },
+  "keywords": [
+    "react",
+    "nouislider",
+    "slider",
+    "component",
+    "reactjs",
+    "range",
+    "slider"
+  ],
+  "author": "Maksim Markelov <mapkeji26@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "nouislider": "^11.1.0",
+    "prop-types": "^15.6.1",
+    "react": "^16.3.2"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^8.2.3",
+    "babel-plugin-transform-react-remove-prop-types": "^0.4.13",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-1": "^6.24.1",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.8.2"
+  }
+}
