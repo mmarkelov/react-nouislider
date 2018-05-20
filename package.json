@@ -1,5 +1,5 @@
 {
-  "name": "react-nouislider",
+  "name": "nouislider-react",
   "private": false,
   "version": "0.0.1",
   "description": "React component wrapping leongersen/noUiSlider",
