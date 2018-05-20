@@ -3,7 +3,7 @@
   "private": false,
   "version": "0.0.1",
   "description": "React component wrapping leongersen/noUiSlider",
-  "main": "index.js",
+  "main": "build/index.js",
   "scripts": {
     "build": "babel src -d build"
   },
