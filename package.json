@@ -26,6 +26,10 @@
     "nouislider": "^11.1.0",
     "react": "^16.3.2"
   },
+  "peerDependencies": {
+    "react": "16.3.x",
+    "nouislider": "11.x"
+  },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
