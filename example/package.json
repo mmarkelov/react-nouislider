@@ -8,8 +8,8 @@
   },
   "scripts": {
     "dev": "webpack-dev-server --mode development",
-    "build:examples": "rm -rf ./example/build && webpack --mode production",
-    "publish:examples": "npm run build:example && gh-pages -d ./build"
+    "build:example": "rm -rf ./example/build && webpack --mode production",
+    "publish:example": "npm run build:example && gh-pages -d ./build"
   },
   "keywords": [
     "react",
