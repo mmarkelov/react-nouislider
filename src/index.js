@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import nouislider from 'nouislider';
-import 'nouislider/distribute/nouislider.css';
 
 class Nouislider extends React.Component {
   componentDidMount() {
