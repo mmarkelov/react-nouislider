@@ -7,6 +7,7 @@
   "scripts": {
     "build": "babel src -d build"
   },
+  "files": ["build"],
   "repository": {
     "type": "git",
     "url": "https://github.com/mmarkelov/react-nouislider"
