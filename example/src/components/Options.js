@@ -2,7 +2,7 @@ import React from 'react';
 
 const Options = () => (
   <section className="options">
-    <h2>Options:</h2>
+      <h2><a href='https://refreshless.com/nouislider/slider-options/'>Options:</a></h2>
     <ul>
       <li>
         START - <b>Accepted values</b> : string, array[string], array[string,
@@ -38,11 +38,6 @@ const Options = () => (
         ANIMATE - <b>Accepted values</b> : true, false
       </li>
     </ul>
-    <div className="info">
-      For more info you can check: <a href="https://refreshless.com/nouislider/">
-        Official site
-      </a>
-    </div>
   </section>
 );
 
