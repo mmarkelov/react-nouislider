@@ -1,5 +1,6 @@
 import React from 'react';
-import Nouislider from 'react-nouislider';
+import Nouislider from 'nouislider-react';
+import 'nouislider/distribute/nouislider.css';
 
 const Slider = () => (
   <div className="slider">
