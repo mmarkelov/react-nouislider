@@ -22,6 +22,10 @@ li {
   color: #fff;
 }
 
+li a {
+  text-transform: none;
+}
+
 .info {
   text-align: center;
   color: #fff;
