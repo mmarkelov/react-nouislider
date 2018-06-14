@@ -6,9 +6,13 @@ const reactNoUiSlider = path.resolve('../src');
 
 const vendor = ['react', 'react-dom'];
 
+const NODE_ENV = process.env.NODE_ENV || 'development';
+
 const isDebug = process.argv[1].indexOf('webpack-dev-server') !== -1;
 
 module.exports = {
+  devtool: NODE_ENV === 'development' ? 'source-map' : '',
+
   devServer: {
     open: true,
     compress: true,
@@ -28,7 +32,7 @@ module.exports = {
 
   resolve: {
     alias: {
-      'react-nouislider': reactNoUiSlider,
+      'nouislider-react': reactNoUiSlider,
     },
   },
 
