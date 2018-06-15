@@ -14,7 +14,7 @@ class Nouislider extends React.Component {
   }
 
   componentWillUnmount() {
-    this.slider.destroy();
+    if (this.slider) this.slider.destroy();
   }
 
   sliderContainer = React.createRef();
@@ -53,8 +53,15 @@ class Nouislider extends React.Component {
   }
 
   render() {
-    const { style } = this.props;
-    return <div ref={this.sliderContainer} style={style} />;
+    const { id, className, style } = this.props;
+    const options = {};
+    if (id) {
+      options.id = id;
+    }
+    if (className) {
+      options.className = className;
+    }
+    return <div {...options} ref={this.sliderContainer} style={style} />;
   }
 }
 
@@ -63,6 +70,7 @@ Nouislider.propTypes = {
   animate: PropTypes.bool,
   // https://refreshless.com/nouislider/behaviour-option/
   behaviour: PropTypes.string,
+  className: PropTypes.string,
   // https://refreshless.com/nouislider/slider-options/#section-connect
   connect: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.bool),
@@ -72,6 +80,7 @@ Nouislider.propTypes = {
   direction: PropTypes.oneOf(['ltr', 'rtl']),
   // https://refreshless.com/nouislider/more/#section-disable
   disabled: PropTypes.bool,
+  id: PropTypes.string,
   // https://refreshless.com/nouislider/slider-options/#section-limit
   limit: PropTypes.number,
   // https://refreshless.com/nouislider/slider-options/#section-margin
@@ -99,6 +108,7 @@ Nouislider.propTypes = {
   pips: PropTypes.shape,
   // https://refreshless.com/nouislider/slider-values/#section-range
   range: PropTypes.shape.isRequired,
+  snap: PropTypes.bool,
   // https://refreshless.com/nouislider/slider-options/#section-start
   start: PropTypes.oneOfType([
     PropTypes.number,
@@ -124,13 +134,16 @@ Nouislider.propTypes = {
 Nouislider.defaultProps = {
   animate: true,
   behaviour: 'tap',
+  className: '',
   connect: false,
   direction: 'ltr',
   disabled: false,
   margin: null,
   limit: null,
+  id: '',
   padding: 0,
   pips: null,
+  snap: false,
   step: null,
   style: null,
   orientation: 'horizontal',
