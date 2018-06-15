@@ -1,0 +1,16 @@
+.examples {
+  width: 75%;
+  margin: auto auto 50px;
+}
+
+.examples h4 {
+  text-align: center;
+}
+
+.warning {
+  width: 50%;
+  background-color: #fff;
+  color: #c0392b;
+  text-align: center;
+  margin: auto auto 20px;
+}
