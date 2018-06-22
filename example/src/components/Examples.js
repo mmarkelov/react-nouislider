@@ -11,37 +11,12 @@ const COLORS = ['red', 'green', 'blue'];
 const colors = [0, 0, 0];
 
 class Examples extends React.Component {
+  slider = React.createRef();
+
   state = {
-    value: 10,
     color: 'rgb(127, 127, 127)',
     textValue: null,
     percent: null,
-  };
-
-  componentDidMount() {
-    this.slider.current &&
-      this.slider.current.sliderContainer.current
-        .querySelector('.noUi-handle')
-        .addEventListener('keydown', this.onKeyPressed);
-  }
-
-  componentWillUnmount() {
-    this.slider.current.sliderContainer.current
-      .querySelector('.noUi-handle')
-      .removeEventListener('keydown', this.onKeyPressed);
-  }
-
-  onKeyPressed = e => {
-    const { value } = this.state;
-    if (e.which === 37) {
-      this.setState({ value: value - 10 });
-      this.slider.current.slider.set(value - 10);
-    }
-
-    if (e.which === 39) {
-      this.setState({ value: value + 10 });
-      this.slider.current.slider.set(value + 10);
-    }
   };
 
   onUpdate = index => (render, handle, value, un, percent) => {
@@ -61,8 +36,6 @@ class Examples extends React.Component {
       skippingValue: value[0],
     });
   };
-
-  slider = React.createRef();
 
   render() {
     const { color, textValue, percent, skippingValue } = this.state;
@@ -93,8 +66,8 @@ class Examples extends React.Component {
         </div>
         <div className="examples">
           <h4>Adding keyboard support:</h4>
-          <div className="warning">UNSTABLE! 'React' solution is in work!</div>
           <Nouislider
+            accessibility
             start={10}
             step={10}
             range={{
