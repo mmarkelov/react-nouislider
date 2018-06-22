@@ -1,56 +1,76 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
-import nouislider from 'nouislider';
+import nouislider from "nouislider";
 
 class Nouislider extends React.Component {
+  sliderContainer = React.createRef();
+
   componentDidMount() {
-    if (!this.props.disabled) {
-      this.sliderContainer.current.removeAttribute('disabled');
+    const { accessibility, disabled } = this.props;
+    if (!disabled) {
+      this.sliderContainer.current.removeAttribute("disabled");
     } else {
-      this.sliderContainer.current.setAttribute('disabled', true);
+      this.sliderContainer.current.setAttribute("disabled", true);
     }
     this.createSlider();
+    if (accessibility && this.sliderContainer.current)
+      this.sliderContainer.current
+        .querySelector(".noUi-handle")
+        .addEventListener("keydown", this.onKeyPressed);
   }
 
   componentWillUnmount() {
     if (this.slider) this.slider.destroy();
+    this.sliderContainer.current
+      .querySelector(".noUi-handle")
+      .removeEventListener("keydown", this.onKeyPressed);
   }
-
-  sliderContainer = React.createRef();
 
   createSlider() {
     const { onUpdate, onChange, onSlide, onStart, onEnd, onSet } = this.props;
     const slider = nouislider.create(this.sliderContainer.current, {
-      ...this.props,
+      ...this.props
     });
 
     this.slider = slider;
 
     if (onStart) {
-      slider.on('start', onStart);
+      slider.on("start", onStart);
     }
 
     if (onSlide) {
-      slider.on('slide', onSlide);
+      slider.on("slide", onSlide);
     }
 
     if (onUpdate) {
-      slider.on('update', onUpdate);
+      slider.on("update", onUpdate);
     }
 
     if (onChange) {
-      slider.on('change', onChange);
+      slider.on("change", onChange);
     }
 
     if (onSet) {
-      slider.on('set', onSet);
+      slider.on("set", onSet);
     }
 
     if (onEnd) {
-      slider.on('end', onEnd);
+      slider.on("end", onEnd);
     }
   }
+
+  onKeyPressed = e => {
+    const value = Number(this.slider.get());
+    const { step } = this.props;
+    if (e.which === 37) {
+      this.slider.set(value - step);
+    }
+
+    if (e.which === 39) {
+      this.slider.set(value + step);
+    }
+  };
 
   render() {
     const { id, className, style } = this.props;
@@ -66,6 +86,7 @@ class Nouislider extends React.Component {
 }
 
 Nouislider.propTypes = {
+  accessibility: PropTypes.bool,
   // https://refreshless.com/nouislider/slider-options/#section-animate
   animate: PropTypes.bool,
   // https://refreshless.com/nouislider/behaviour-option/
@@ -74,10 +95,10 @@ Nouislider.propTypes = {
   // https://refreshless.com/nouislider/slider-options/#section-connect
   connect: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.bool),
-    PropTypes.bool,
+    PropTypes.bool
   ]),
   // http://refreshless.com/nouislider/slider-options/#section-orientation
-  direction: PropTypes.oneOf(['ltr', 'rtl']),
+  direction: PropTypes.oneOf(["ltr", "rtl"]),
   // https://refreshless.com/nouislider/more/#section-disable
   disabled: PropTypes.bool,
   id: PropTypes.string,
@@ -98,11 +119,11 @@ Nouislider.propTypes = {
   // http://refreshless.com/nouislider/events-callbacks/#section-update
   onUpdate: PropTypes.func,
   // https://refreshless.com/nouislider/slider-options/#section-orientation
-  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
+  orientation: PropTypes.oneOf(["horizontal", "vertical"]),
   // https://refreshless.com/nouislider/slider-options/#section-padding
   padding: PropTypes.oneOfType([
     PropTypes.number,
-    PropTypes.arrayOf(PropTypes.number),
+    PropTypes.arrayOf(PropTypes.number)
   ]),
   // https://refreshless.com/nouislider/pips/
   pips: PropTypes.shape,
@@ -113,9 +134,7 @@ Nouislider.propTypes = {
   start: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.string,
-    PropTypes.arrayOf(
-      PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    ),
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string]))
   ]).isRequired,
   // https://refreshless.com/nouislider/slider-options/#section-step
   step: PropTypes.number,
@@ -125,35 +144,36 @@ Nouislider.propTypes = {
     PropTypes.bool,
     PropTypes.arrayOf(
       PropTypes.shape({
-        to: PropTypes.func,
-      }),
-    ),
-  ]),
+        to: PropTypes.func
+      })
+    )
+  ])
 };
 
 Nouislider.defaultProps = {
+  accessibility: false,
   animate: true,
-  behaviour: 'tap',
-  className: '',
+  behaviour: "tap",
+  className: "",
   connect: false,
-  direction: 'ltr',
+  direction: "ltr",
   disabled: false,
   margin: null,
   limit: null,
-  id: '',
+  id: "",
   padding: 0,
   pips: null,
   snap: false,
   step: null,
   style: null,
-  orientation: 'horizontal',
+  orientation: "horizontal",
   tooltips: false,
   onChange: () => {},
   onEnd: () => {},
   onSet: () => {},
   onSlide: () => {},
   onStart: () => {},
-  onUpdate: () => {},
+  onUpdate: () => {}
 };
 
 export default Nouislider;
