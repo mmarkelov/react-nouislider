@@ -26,9 +26,9 @@ yarn add nouislider-react
 ```
 
 ```js
-import React from 'react';
-import Nouislider from 'nouislider-react';
-import 'nouislider/distribute/nouislider.css';
+import React from "react";
+import Nouislider from "nouislider-react";
+import "nouislider/distribute/nouislider.css";
 
 const Slider = () => (
   <Nouislider range={{ min: 0, max: 100 }} start={[20, 80]} connect />
@@ -40,22 +40,22 @@ const Slider = () => (
 ### Colorpicker:
 
 ```js
-import React from 'react';
-import Nouislider from 'nouislider-react';
-import 'nouislider/distribute/nouislider.css';
+import React from "react";
+import Nouislider from "nouislider-react";
+import "nouislider/distribute/nouislider.css";
 
-import './colorpicker.css';
+import "./colorpicker.css";
 
-const COLORS = ['red', 'green', 'blue'];
+const COLORS = ["red", "green", "blue"];
 
 class Colorpicker extends React.Component {
   state = {
-    color: 'rgb(127, 127, 127)',
+    color: "rgb(127, 127, 127)"
   };
 
   onUpdate = index => (render, handle, value, un, percent) => {
     colors[index] = value[0];
-    this.setState({ color: `rgb(${colors.join(',')})` });
+    this.setState({ color: `rgb(${colors.join(",")})` });
   };
 
   render() {
@@ -71,7 +71,7 @@ class Colorpicker extends React.Component {
             orientation="vertical"
             range={{
               min: 0,
-              max: 255,
+              max: 255
             }}
             onUpdate={this.onUpdate(index)}
           />
@@ -86,20 +86,20 @@ class Colorpicker extends React.Component {
 ### Non linear slider:
 
 ```js
-import React from 'react';
-import Nouislider from 'nouislider-react';
-import 'nouislider/distribute/nouislider.css';
+import React from "react";
+import Nouislider from "nouislider-react";
+import "nouislider/distribute/nouislider.css";
 
 class Slider extends React.Component {
   state = {
     textValue: null,
-    percent: null,
+    percent: null
   };
 
   onSlide = (render, handle, value, un, percent) => {
     this.setState({
       textValue: value[0].toFixed(2),
-      percent: percent[0].toFixed(2),
+      percent: percent[0].toFixed(2)
     });
   };
 
@@ -113,9 +113,9 @@ class Slider extends React.Component {
           behaviour="tap"
           range={{
             min: [0],
-            '10%': [500, 500],
-            '50%': [4000, 1000],
-            max: [10000],
+            "10%": [500, 500],
+            "50%": [4000, 1000],
+            max: [10000]
           }}
           onSlide={this.onSlide}
         />
@@ -129,6 +129,27 @@ class Slider extends React.Component {
     );
   }
 }
+```
+
+### Adding keyboard support:
+
+```js
+import React from "react";
+import Nouislider from "nouislider-react";
+import "nouislider/distribute/nouislider.css";
+
+const KeyboardSlider = () => (
+  <Nouislider
+    accessibility
+    start={10}
+    step={10}
+    range={{
+      min: 0,
+      max: 100
+    }}
+    ref={this.slider}
+  />
+);
 ```
 
 ## More details
