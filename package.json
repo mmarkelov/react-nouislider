@@ -1,7 +1,7 @@
 {
   "name": "nouislider-react",
   "private": false,
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "React component wrapping leongersen/noUiSlider",
   "main": "build/index.js",
   "scripts": {
