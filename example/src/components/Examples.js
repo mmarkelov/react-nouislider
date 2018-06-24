@@ -10,8 +10,6 @@ const COLORS = ['red', 'green', 'blue'];
 const colors = [0, 0, 0];
 
 class Examples extends React.Component {
-  slider = React.createRef();
-
   state = {
     color: 'rgb(127, 127, 127)',
     textValue: null,
@@ -73,7 +71,6 @@ class Examples extends React.Component {
               min: 0,
               max: 100,
             }}
-            ref={this.slider}
           />
         </div>
         <div className="examples">
