@@ -7,17 +7,25 @@ class Nouislider extends React.Component {
   sliderContainer = React.createRef();
 
   componentDidMount() {
-    const { accessibility, disabled } = this.props;
+    const { accessibility, clickablePips, disabled } = this.props;
+    const sliderHTML = this.sliderContainer.current;
     if (!disabled) {
-      this.sliderContainer.current.removeAttribute("disabled");
+      sliderHTML.removeAttribute("disabled");
     } else {
-      this.sliderContainer.current.setAttribute("disabled", true);
+      sliderHTML.setAttribute("disabled", true);
     }
     this.createSlider();
-    if (accessibility && this.sliderContainer.current)
-      this.sliderContainer.current
-        .querySelector(".noUi-handle")
-        .addEventListener("keydown", this.onKeyPressed);
+    if (sliderHTML) {
+      if (accessibility)
+        sliderHTML
+          .querySelector(".noUi-handle")
+          .addEventListener("keydown", this.onKeyPressed);
+      if (clickablePips)
+        sliderHTML.querySelectorAll(".noUi-value").forEach(pip => {
+          pip.style.cursor = "pointer";
+          pip.addEventListener("click", this.clickOnPip);
+        });
+    }
   }
 
   componentWillUnmount() {
@@ -25,7 +33,27 @@ class Nouislider extends React.Component {
     this.sliderContainer.current
       .querySelector(".noUi-handle")
       .removeEventListener("keydown", this.onKeyPressed);
+    this.sliderContainer.current
+      .querySelector(".noUi-value")
+      .removeEventListener("click", this.clickOnPip);
   }
+
+  onKeyPressed = e => {
+    const value = Number(this.slider.get());
+    const { step } = this.props;
+    if (e.which === 37) {
+      this.slider.set(value - step);
+    }
+
+    if (e.which === 39) {
+      this.slider.set(value + step);
+    }
+  };
+
+  clickOnPip = pip => {
+    const value = Number(pip.target.getAttribute("data-value"));
+    this.slider.set(value);
+  };
 
   createSlider() {
     const { onUpdate, onChange, onSlide, onStart, onEnd, onSet } = this.props;
@@ -60,18 +88,6 @@ class Nouislider extends React.Component {
     }
   }
 
-  onKeyPressed = e => {
-    const value = Number(this.slider.get());
-    const { step } = this.props;
-    if (e.which === 37) {
-      this.slider.set(value - step);
-    }
-
-    if (e.which === 39) {
-      this.slider.set(value + step);
-    }
-  };
-
   render() {
     const { id, className, style } = this.props;
     const options = {};
@@ -92,6 +108,7 @@ Nouislider.propTypes = {
   // https://refreshless.com/nouislider/behaviour-option/
   behaviour: PropTypes.string,
   className: PropTypes.string,
+  clickablePips: PropTypes.bool,
   // https://refreshless.com/nouislider/slider-options/#section-connect
   connect: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.bool),
@@ -155,6 +172,7 @@ Nouislider.defaultProps = {
   animate: true,
   behaviour: "tap",
   className: "",
+  clickablePips: false,
   connect: false,
   direction: "ltr",
   disabled: false,
