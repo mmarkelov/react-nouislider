@@ -1,4 +1,3 @@
-/* global document */
 import React from 'react';
 import Nouislider from 'nouislider-react';
 import 'nouislider/distribute/nouislider.css';
@@ -99,10 +98,11 @@ class Examples extends React.Component {
             )}
         </div>
         <div className="examples">
-          <h4>Pips:</h4>
+          <h4>Clickable pips:</h4>
           <Nouislider
             start={[50]}
             pips={{ mode: 'count', values: 5 }}
+            clickablePips
             range={{
               min: 0,
               max: 100,
