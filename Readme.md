@@ -5,13 +5,14 @@ Also you can have a look at other natives react sliders: https://www.google.com/
 
 Wraps [leongersen/noUiSlider](https://github.com/leongersen/noUiSlider) in a [react component](https://facebook.github.io/react/docs/component-api.html).
 
-## New features
-
-There are no added features in nouislider-react compared to the underlying noUiSlider project.
-
 ## Documentation
 
 All the options used in nouislider-react are then passed to noUiSlider. See the [noUiSlider documentation](http://refreshless.com/nouislider/) before opening issues.
+
+### Also there are extra options to implement new features:
+
+**accessibility** use to add keyboard support
+**clickablePips** use to move the slider by clicking pips
 
 ## Usage
 
@@ -147,7 +148,26 @@ const KeyboardSlider = () => (
       min: 0,
       max: 100
     }}
-    ref={this.slider}
+  />
+);
+```
+
+### Moving the slider by clicking pips:
+
+```js
+import React from "react";
+import Nouislider from "nouislider-react";
+import "nouislider/distribute/nouislider.css";
+
+const KeyboardSlider = () => (
+  <Nouislider
+    start={[50]}
+    pips={{ mode: "count", values: 5 }}
+    clickablePips
+    range={{
+      min: 0,
+      max: 100
+    }}
   />
 );
 ```
