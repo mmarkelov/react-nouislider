@@ -54,7 +54,7 @@
   },
   "peerDependencies": {
     "nouislider": "11.x",
-    "react": "16.3.x"
+    "react": "16.3.x || 16.4.x"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
