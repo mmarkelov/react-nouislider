@@ -28,14 +28,23 @@ class Nouislider extends React.Component {
     }
   }
 
+  componentDidUpdate(prevProps) {
+    const { start } = this.props;
+    if (start !== prevProps.start && this.slider) {
+      this.slider.set(start);
+    }
+  }
+
   componentWillUnmount() {
     if (this.slider) this.slider.destroy();
-    this.sliderContainer.current
-      .querySelector(".noUi-handle")
-      .removeEventListener("keydown", this.onKeyPressed);
-    this.sliderContainer.current
-      .querySelector(".noUi-value")
-      .removeEventListener("click", this.clickOnPip);
+    if (this.sliderContainer.current) {
+      this.sliderContainer.current
+        .querySelector(".noUi-handle")
+        .removeEventListener("keydown", this.onKeyPressed);
+      this.sliderContainer.current
+        .querySelector(".noUi-value")
+        .removeEventListener("click", this.clickOnPip);
+    }
   }
 
   onKeyPressed = e => {
