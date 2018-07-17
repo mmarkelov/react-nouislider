@@ -14,6 +14,7 @@ class Examples extends React.Component {
     color: 'rgb(127, 127, 127)',
     textValue: null,
     percent: null,
+    value: 0,
   };
 
   onUpdate = index => (render, handle, value, un, percent) => {
@@ -34,8 +35,12 @@ class Examples extends React.Component {
     });
   };
 
+  handleClick = () => {
+    this.setState({ value: 50 });
+  };
+
   render() {
-    const { color, textValue, percent, skippingValue } = this.state;
+    const { color, textValue, percent, skippingValue, value } = this.state;
     return (
       <section className="options">
         <h2>
@@ -135,6 +140,17 @@ class Examples extends React.Component {
             range={{
               min: [0, 1],
               max: 1,
+            }}
+          />
+        </div>
+        <div className="examples">
+          <h4>Change start by changing state:</h4>
+          <button onClick={this.handleClick}>Change state</button>
+          <Nouislider
+            start={value}
+            range={{
+              min: 0,
+              max: 100,
             }}
           />
         </div>

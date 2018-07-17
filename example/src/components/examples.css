@@ -7,6 +7,10 @@
   text-align: center;
 }
 
+.examples button {
+  margin: 20px;
+}
+
 .warning {
   width: 50%;
   background-color: #fff;
