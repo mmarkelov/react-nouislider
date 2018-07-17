@@ -38,12 +38,14 @@ class Nouislider extends React.Component {
   componentWillUnmount() {
     if (this.slider) this.slider.destroy();
     if (this.sliderContainer.current) {
-      this.sliderContainer.current
-        .querySelector(".noUi-handle")
-        .removeEventListener("keydown", this.onKeyPressed);
-      this.sliderContainer.current
-        .querySelector(".noUi-value")
-        .removeEventListener("click", this.clickOnPip);
+      const handle = this.sliderContainer.current.querySelector(".noUi-handle");
+      const value = this.sliderContainer.current.querySelector(".noUi-value");
+      if (handle) {
+        handle.removeEventListener("keydown", this.onKeyPressed);
+      }
+      if (value) {
+        value.removeEventListener("click", this.clickOnPip);
+      }
     }
   }
 
