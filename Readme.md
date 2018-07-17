@@ -172,6 +172,37 @@ const KeyboardSlider = () => (
 );
 ```
 
+### Change start with state:
+
+```js
+import React from "react";
+import Nouislider from "nouislider-react";
+import "nouislider/distribute/nouislider.css";
+
+class KeyboardSlider extends React.Component {
+  state = { value: 0 };
+
+  handleClick = () => {
+    this.setState({ value: 50 });
+  };
+
+  render() {
+    return (
+      <div>
+        <button onClick={this.handleClick}>Change state</button>
+        <Nouislider
+          start={value}
+          range={{
+            min: 0,
+            max: 100
+          }}
+        />
+      </div>
+    );
+  }
+}
+```
+
 ## More details
 
 You can clone this repository and check more examples:
