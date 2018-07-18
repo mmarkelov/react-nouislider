@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 
 import nouislider from "nouislider";
 
+import { isEqual } from "./utils";
+
 class Nouislider extends React.Component {
   sliderContainer = React.createRef();
 
@@ -28,11 +30,14 @@ class Nouislider extends React.Component {
     }
   }
 
-  componentDidUpdate(prevProps) {
+  shouldComponentUpdate(nextProps) {
     const { start } = this.props;
-    if (start !== prevProps.start && this.slider) {
-      this.slider.set(start);
-    }
+    return !isEqual(nextProps.start, start);
+  }
+
+  componentDidUpdate() {
+    const { start } = this.props;
+    this.slider.set(start);
   }
 
   componentWillUnmount() {
