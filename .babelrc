@@ -1,4 +1,7 @@
 {
-  "presets": ["env", "stage-1", "react"],
-  "plugins": [["transform-react-remove-prop-types", { "removeImport": true }]]
+  "presets": ["@babel/preset-env", "@babel/preset-react"],
+  "plugins": [
+    "@babel/plugin-proposal-class-properties",
+    ["transform-react-remove-prop-types", { "removeImport": true }]
+  ]
 }
