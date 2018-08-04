@@ -31,13 +31,18 @@ class Nouislider extends React.Component {
   }
 
   shouldComponentUpdate(nextProps) {
-    const { start } = this.props;
-    return !isEqual(nextProps.start, start);
+    const { start, setStart } = this.props;
+    return (
+      !isEqual(nextProps.start, start) ||
+      (setStart && !isEqual(nextProps.setStart, setStart))
+    );
   }
 
   componentDidUpdate() {
-    const { start } = this.props;
-    this.slider.set(start);
+    const { setStart } = this.props;
+    if (setStart) {
+      this.slider.set(setStart);
+    }
   }
 
   componentWillUnmount() {
@@ -159,7 +164,7 @@ Nouislider.propTypes = {
     PropTypes.arrayOf(PropTypes.number)
   ]),
   // https://refreshless.com/nouislider/pips/
-  pips: PropTypes.shape,
+  pips: PropTypes.object,
   // https://refreshless.com/nouislider/slider-values/#section-range
   range: PropTypes.shape.isRequired,
   snap: PropTypes.bool,
@@ -169,9 +174,14 @@ Nouislider.propTypes = {
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string]))
   ]).isRequired,
+  setStart: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string]))
+  ]),
   // https://refreshless.com/nouislider/slider-options/#section-step
   step: PropTypes.number,
-  style: PropTypes.shape,
+  style: PropTypes.object,
   // https://refreshless.com/nouislider/slider-options/#section-tooltips
   tooltips: PropTypes.oneOfType([
     PropTypes.bool,
@@ -197,6 +207,7 @@ Nouislider.defaultProps = {
   id: "",
   padding: 0,
   pips: null,
+  setStart: null,
   snap: false,
   step: null,
   style: null,
