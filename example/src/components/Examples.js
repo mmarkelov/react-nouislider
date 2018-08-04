@@ -36,7 +36,7 @@ class Examples extends React.Component {
   };
 
   handleClick = () => {
-    this.setState({ value: 50 });
+    this.setState(prevState => ({ value: prevState.value + 10 }));
   };
 
   render() {
@@ -147,7 +147,8 @@ class Examples extends React.Component {
           <h4>Change start by changing state:</h4>
           <button onClick={this.handleClick}>Change state</button>
           <Nouislider
-            start={value}
+            setStart={value}
+            start={0}
             range={{
               min: 0,
               max: 100,
