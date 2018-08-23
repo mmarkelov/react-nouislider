@@ -172,7 +172,7 @@ const KeyboardSlider = () => (
 );
 ```
 
-### Change start with state:
+### Change start:
 
 ```js
 import React from "react";
@@ -183,7 +183,7 @@ class KeyboardSlider extends React.Component {
   state = { value: 0 };
 
   handleClick = () => {
-    this.setState({ value: 50 });
+    this.setState(prevState => ({ value: prevState + 10 }));
   };
 
   render() {
@@ -191,7 +191,8 @@ class KeyboardSlider extends React.Component {
       <div>
         <button onClick={this.handleClick}>Change state</button>
         <Nouislider
-          start={value}
+          setStart={this.state.value}
+          start={0}
           range={{
             min: 0,
             max: 100
