@@ -31,18 +31,13 @@ class Nouislider extends React.Component {
   }
 
   shouldComponentUpdate(nextProps) {
-    const { start, setStart } = this.props;
-    return (
-      !isEqual(nextProps.start, start) ||
-      (setStart && !isEqual(nextProps.setStart, setStart))
-    );
+    const { start } = this.props;
+    return !isEqual(nextProps.start, start);
   }
 
   componentDidUpdate() {
-    const { setStart } = this.props;
-    if (setStart) {
-      this.slider.set(setStart);
-    }
+    const { start } = this.props;
+    this.slider.set(start);
   }
 
   componentWillUnmount() {
@@ -166,7 +161,7 @@ Nouislider.propTypes = {
   // https://refreshless.com/nouislider/pips/
   pips: PropTypes.object,
   // https://refreshless.com/nouislider/slider-values/#section-range
-  range: PropTypes.shape.isRequired,
+  range: PropTypes.object.isRequired,
   snap: PropTypes.bool,
   // https://refreshless.com/nouislider/slider-options/#section-start
   start: PropTypes.oneOfType([
