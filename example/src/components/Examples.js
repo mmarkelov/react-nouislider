@@ -147,8 +147,7 @@ class Examples extends React.Component {
           <h4>Change start by changing state:</h4>
           <button onClick={this.handleClick}>Change state</button>
           <Nouislider
-            setStart={value}
-            start={0}
+            start={value}
             range={{
               min: 0,
               max: 100,
