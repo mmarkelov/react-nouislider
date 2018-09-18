@@ -191,8 +191,7 @@ class KeyboardSlider extends React.Component {
       <div>
         <button onClick={this.handleClick}>Change state</button>
         <Nouislider
-          setStart={this.state.value}
-          start={0}
+          start={this.state.value}
           range={{
             min: 0,
             max: 100
