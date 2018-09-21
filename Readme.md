@@ -209,7 +209,7 @@ You can clone this repository and check more examples:
 
 ```sh
 git clone https://github.com/mmarkelov/react-nouislider.git
-cd ./react-vk/example
+cd example
 npm install && npm run dev
 ```
 
