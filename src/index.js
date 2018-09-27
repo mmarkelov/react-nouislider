@@ -9,7 +9,12 @@ class Nouislider extends React.Component {
   sliderContainer = React.createRef();
 
   componentDidMount() {
-    const { accessibility, clickablePips, disabled } = this.props;
+    const {
+      accessibility,
+      keyboardSupport,
+      clickablePips,
+      disabled
+    } = this.props;
     const sliderHTML = this.sliderContainer.current;
     if (!disabled) {
       sliderHTML.removeAttribute("disabled");
@@ -18,7 +23,7 @@ class Nouislider extends React.Component {
     }
     this.createSlider();
     if (sliderHTML) {
-      if (accessibility)
+      if (keyboardSupport && accessibility)
         sliderHTML
           .querySelector(".noUi-handle")
           .addEventListener("keydown", this.onKeyPressed);
@@ -134,6 +139,7 @@ Nouislider.propTypes = {
   direction: PropTypes.oneOf(["ltr", "rtl"]),
   // https://refreshless.com/nouislider/more/#section-disable
   disabled: PropTypes.bool,
+  keyboardSupport: PropTypes.bool,
   id: PropTypes.string,
   // https://refreshless.com/nouislider/slider-options/#section-limit
   limit: PropTypes.number,
@@ -199,6 +205,7 @@ Nouislider.defaultProps = {
   disabled: false,
   margin: null,
   limit: null,
+  keyboardSupport: true,
   id: null,
   padding: 0,
   pips: null,
