@@ -49,7 +49,7 @@
   "author": "Maksim Markelov <mapkeji26@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "nouislider": "^12.0.0",
+    "nouislider": "^12.1.0",
     "react": "^16.6.0"
   },
   "peerDependencies": {
