@@ -203,16 +203,28 @@ class KeyboardSlider extends React.Component {
 }
 ```
 
-## More details
+## Examples
 
-You can clone this repository and check more examples:
+1. Fork this repository and clone your version of the repo
+2. Install dependencies
 
 ```sh
-git clone https://github.com/mmarkelov/react-nouislider.git
-cd ROOT_DIRECTORY
-npm install 
-cd example
-npm install && npm run dev
+npm install
 ```
+
+3. Install example dependencies
+
+```sh
+cd example && npm install
+```
+
+4. Start example server locally
+
+```sh
+npm run dev
+```
+
+You now have examples running on
+`http://localhost:3004`
 
 Also you can check them [here](https://mmarkelov.github.io/react-nouislider/)
