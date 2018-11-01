@@ -209,6 +209,8 @@ You can clone this repository and check more examples:
 
 ```sh
 git clone https://github.com/mmarkelov/react-nouislider.git
+cd ROOT_DIRECTORY
+npm install 
 cd example
 npm install && npm run dev
 ```
