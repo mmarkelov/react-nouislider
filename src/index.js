@@ -16,13 +16,13 @@ class Nouislider extends React.Component {
       disabled
     } = this.props;
     const sliderHTML = this.sliderContainer.current;
-    if (!disabled) {
-      sliderHTML.removeAttribute("disabled");
-    } else {
-      sliderHTML.setAttribute("disabled", true);
-    }
-    this.createSlider();
     if (sliderHTML) {
+      if (!disabled) {
+        sliderHTML.removeAttribute("disabled");
+      } else {
+        sliderHTML.setAttribute("disabled", true);
+      }
+      this.createSlider();
       if (keyboardSupport && accessibility)
         sliderHTML
           .querySelector(".noUi-handle")
