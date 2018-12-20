@@ -6,6 +6,7 @@
   "main": "dist/nouislider-react.cjs.js",
   "module": "dist/nouislider-react.esm.js",
   "browser": "dist/nouislider-react.umd.production.min.js",
+  "typings": "index.d.ts",
   "scripts": {
     "clear": "rm -rf dist",
     "build": "npm run clear && NODE_ENV=development rollup -c && NODE_ENV=production rollup -c",
@@ -33,6 +34,7 @@
   },
   "files": [
     "dist",
+    "index.d.ts",
     "README.md",
     "LICENSE"
   ],

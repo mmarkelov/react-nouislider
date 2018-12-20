@@ -175,11 +175,6 @@ Nouislider.propTypes = {
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string]))
   ]).isRequired,
-  setStart: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.string,
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string]))
-  ]),
   // https://refreshless.com/nouislider/slider-options/#section-step
   step: PropTypes.number,
   style: PropTypes.object,
@@ -209,7 +204,6 @@ Nouislider.defaultProps = {
   id: null,
   padding: 0,
   pips: null,
-  setStart: null,
   snap: false,
   step: null,
   style: null,
