@@ -1,3 +1,5 @@
+/* eslint-env jest */
+
 import React from 'react';
 import { mount } from 'enzyme';
 import Nouislider from '../src';
