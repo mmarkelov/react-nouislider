@@ -13,6 +13,7 @@ const NODE_ENV = process.env.NODE_ENV || 'production';
 const formats = ['cjs', 'esm', 'umd'];
 
 const outputs = formats.map(format => ({
+  dir: path.resolve(__dirname, 'dist'),
   file: [
     name,
     format,
@@ -21,8 +22,7 @@ const outputs = formats.map(format => ({
   ]
     .filter(Boolean)
     .join('.'),
-  dir: path.resolve(__dirname, 'dist'),
-  format: format,
+  format,
   sourcemap: NODE_ENV === 'production',
   globals: {
     react: 'React',
