@@ -13,9 +13,8 @@ const NODE_ENV = process.env.NODE_ENV || 'production';
 const formats = ['cjs', 'esm', 'umd'];
 
 const outputs = formats.map(format => ({
-  dir: path.resolve(__dirname, 'dist'),
   file: [
-    name,
+    'dist/' + name,
     format,
     NODE_ENV === 'production' ? 'production.min' : false,
     'js',
