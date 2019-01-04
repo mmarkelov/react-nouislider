@@ -14,7 +14,7 @@ const formats = ['cjs', 'esm', 'umd'];
 
 const outputs = formats.map(format => ({
   file: [
-    'dist/' + name,
+    path.join(__dirname, 'dist', name),
     format,
     NODE_ENV === 'production' ? 'production.min' : false,
     'js',
