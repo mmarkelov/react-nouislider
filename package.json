@@ -1,7 +1,7 @@
 {
   "name": "nouislider-react",
   "private": false,
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "React component wrapping leongersen/noUiSlider",
   "main": "dist/nouislider-react.cjs.js",
   "module": "dist/nouislider-react.esm.js",
