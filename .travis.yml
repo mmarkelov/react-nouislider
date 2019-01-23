@@ -10,3 +10,5 @@ cache:
     #
     # https://docs.npmjs.com/cli/ci#example
     - '$HOME/.npm'
+script:
+  - npm run coveralls

@@ -12,6 +12,7 @@
     "build": "npm run clear && NODE_ENV=development rollup -c && NODE_ENV=production rollup -c",
     "test": "jest ./tests/",
     "test:coverage": "jest --coverage ./tests/",
+    "coveralls": "jest --coverage && cat ./tests/coverage/lcov.info | coveralls",
     "test:watch": "jest --watch ./tests/",
     "prepublish": "npm run build",
     "prettier": "prettier --write src/*.js",
