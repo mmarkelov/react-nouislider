@@ -82,8 +82,26 @@ describe('Slider', () => {
       />,
     );
 
-    const componentWillUnmount = jest.spyOn(wrapper.instance(), 'componentWillUnmount');
+    const componentWillUnmount = jest.spyOn(
+      wrapper.instance(),
+      'componentWillUnmount',
+    );
     wrapper.unmount();
     expect(componentWillUnmount.mock.calls.length).toBe(1);
+  });
+
+  test('componentDidUpdate', () => {
+    const wrapper = mount(
+        <Nouislider range={{ min: 0, max: 100 }} start={20} />,
+    );
+    wrapper.setProps({ start: 40 });
+    expect(wrapper.render().html().includes('aria-valuenow="40.0"')).toBe(true)
+  });
+
+  test('disabled prop should passed correctly', () => {
+    const wrapper = mount(
+      <Nouislider range={{ min: 0, max: 100 }} start={[20, 80]} disabled />,
+    );
+    expect(wrapper.render().prop('disabled')).toBe(true);
   });
 });
