@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/mmarkelov/react-nouislider.svg?branch=master)](https://travis-ci.org/mmarkelov/react-nouislider)
+
 **This project is created as react-nouislider package is not well maintained.
 Also you can have a look at other natives react sliders: https://www.google.com/search?q=react+slider**
 
