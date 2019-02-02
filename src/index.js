@@ -17,11 +17,7 @@ class Nouislider extends React.Component {
     } = this.props;
     const sliderHTML = this.sliderContainer.current;
     if (sliderHTML) {
-      if (!disabled) {
-        sliderHTML.removeAttribute("disabled");
-      } else {
-        sliderHTML.setAttribute("disabled", true);
-      }
+      this.toggleDisable(disabled);
       this.createSlider();
       if (keyboardSupport && accessibility)
         sliderHTML
@@ -36,13 +32,14 @@ class Nouislider extends React.Component {
   }
 
   shouldComponentUpdate(nextProps) {
-    const { start } = this.props;
-    return !isEqual(nextProps.start, start);
+    const { start, disabled } = this.props;
+    return !isEqual(nextProps.start, start) || nextProps.disabled !== disabled;
   }
 
   componentDidUpdate() {
-    const { start } = this.props;
+    const { start, disabled } = this.props;
     this.slider.set(start);
+    this.toggleDisable(disabled);
   }
 
   componentWillUnmount() {
@@ -50,6 +47,7 @@ class Nouislider extends React.Component {
     if (this.sliderContainer.current) {
       const handle = this.sliderContainer.current.querySelector(".noUi-handle");
       const value = this.sliderContainer.current.querySelector(".noUi-value");
+      console.log(handle);
       if (handle) {
         handle.removeEventListener("keydown", this.onKeyPressed);
       }
@@ -74,6 +72,17 @@ class Nouislider extends React.Component {
   clickOnPip = pip => {
     const value = Number(pip.target.getAttribute("data-value"));
     this.slider.set(value);
+  };
+
+  toggleDisable = disabled => {
+    const sliderHTML = this.sliderContainer.current;
+    if (sliderHTML) {
+      if (!disabled) {
+        sliderHTML.removeAttribute("disabled");
+      } else {
+        sliderHTML.setAttribute("disabled", true);
+      }
+    }
   };
 
   createSlider() {

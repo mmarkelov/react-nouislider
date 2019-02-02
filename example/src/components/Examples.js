@@ -15,6 +15,7 @@ class Examples extends React.Component {
     textValue: null,
     percent: null,
     value: 0,
+    disabled: false,
   };
 
   onUpdate = index => (render, handle, value, un, percent) => {
@@ -39,8 +40,19 @@ class Examples extends React.Component {
     this.setState(prevState => ({ value: prevState.value + 10 }));
   };
 
+  changeDisabled = () => {
+    this.setState(prevState => ({ disabled: !prevState.disabled }));
+  };
+
   render() {
-    const { color, textValue, percent, skippingValue, value } = this.state;
+    const {
+      color,
+      textValue,
+      percent,
+      skippingValue,
+      value,
+      disabled,
+    } = this.state;
     return (
       <section className="options">
         <h2>
@@ -92,12 +104,11 @@ class Examples extends React.Component {
             }}
             onSlide={this.onSlide}
           />
-          {textValue &&
-            percent && (
-              <div>
-                Value: {textValue}, {percent} %
-              </div>
-            )}
+          {textValue && percent && (
+            <div>
+              Value: {textValue}, {percent} %
+            </div>
+          )}
         </div>
         <div className="examples">
           <h4>Clickable pips:</h4>
@@ -148,6 +159,18 @@ class Examples extends React.Component {
           <button onClick={this.handleClick}>Change state</button>
           <Nouislider
             start={value}
+            range={{
+              min: 0,
+              max: 100,
+            }}
+          />
+        </div>
+        <div className="examples">
+          <h4>Change disabled by changing state:</h4>
+          <button onClick={this.changeDisabled}>Change state</button>
+          <Nouislider
+            disabled={disabled}
+            start={40}
             range={{
               min: 0,
               max: 100,
