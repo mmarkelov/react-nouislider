@@ -47,7 +47,6 @@ class Nouislider extends React.Component {
     if (this.sliderContainer.current) {
       const handle = this.sliderContainer.current.querySelector(".noUi-handle");
       const value = this.sliderContainer.current.querySelector(".noUi-value");
-      console.log(handle);
       if (handle) {
         handle.removeEventListener("keydown", this.onKeyPressed);
       }
