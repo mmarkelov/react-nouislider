@@ -172,7 +172,6 @@ Nouislider.propTypes = {
 };
 
 Nouislider.defaultProps = {
-  accessibility: false,
   animate: true,
   behaviour: "tap",
   className: null,
