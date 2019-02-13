@@ -79,11 +79,9 @@ class Examples extends React.Component {
           </div>
         </div>
         <div className="examples">
-          <h4>Adding keyboard support:</h4>
+          <h4>Keyboard support:</h4>
           <Nouislider
-            accessibility
             start={10}
-            step={10}
             range={{
               min: 0,
               max: 100,

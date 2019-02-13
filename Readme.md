@@ -14,7 +14,6 @@ All the options used in nouislider-react are then passed to noUiSlider. See the 
 
 ### Also there are extra options to implement new features:
 
-**accessibility** use to add keyboard support
 **clickablePips** use to move the slider by clicking pips
 
 ## Usage
@@ -123,12 +122,11 @@ class Slider extends React.Component {
           }}
           onSlide={this.onSlide}
         />
-        {textValue &&
-          percent && (
-            <div>
-              Value: {textValue}, {percent} %
-            </div>
-          )}
+        {textValue && percent && (
+          <div>
+            Value: {textValue}, {percent} %
+          </div>
+        )}
       </div>
     );
   }

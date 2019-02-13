@@ -9,20 +9,11 @@ class Nouislider extends React.Component {
   sliderContainer = React.createRef();
 
   componentDidMount() {
-    const {
-      accessibility,
-      keyboardSupport,
-      clickablePips,
-      disabled
-    } = this.props;
+    const { clickablePips, disabled } = this.props;
     const sliderHTML = this.sliderContainer.current;
     if (sliderHTML) {
       this.toggleDisable(disabled);
       this.createSlider();
-      if (keyboardSupport && accessibility)
-        sliderHTML
-          .querySelector(".noUi-handle")
-          .addEventListener("keydown", this.onKeyPressed);
       if (clickablePips)
         sliderHTML.querySelectorAll(".noUi-value").forEach(pip => {
           pip.style.cursor = "pointer";
@@ -45,28 +36,12 @@ class Nouislider extends React.Component {
   componentWillUnmount() {
     if (this.slider) this.slider.destroy();
     if (this.sliderContainer.current) {
-      const handle = this.sliderContainer.current.querySelector(".noUi-handle");
       const value = this.sliderContainer.current.querySelector(".noUi-value");
-      if (handle) {
-        handle.removeEventListener("keydown", this.onKeyPressed);
-      }
       if (value) {
         value.removeEventListener("click", this.clickOnPip);
       }
     }
   }
-
-  onKeyPressed = e => {
-    const value = Number(this.slider.get());
-    const { step } = this.props;
-    if (e.which === 37) {
-      this.slider.set(value - step);
-    }
-
-    if (e.which === 39) {
-      this.slider.set(value + step);
-    }
-  };
 
   clickOnPip = pip => {
     const value = Number(pip.target.getAttribute("data-value"));
@@ -131,7 +106,6 @@ class Nouislider extends React.Component {
 }
 
 Nouislider.propTypes = {
-  accessibility: PropTypes.bool,
   // https://refreshless.com/nouislider/slider-options/#section-animate
   animate: PropTypes.bool,
   // https://refreshless.com/nouislider/behaviour-option/
