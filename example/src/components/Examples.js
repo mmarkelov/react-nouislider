@@ -16,6 +16,10 @@ class Examples extends React.Component {
     percent: null,
     value: 0,
     disabled: false,
+    range: {
+      min: 0,
+      max: 100,
+    },
   };
 
   onUpdate = index => (render, handle, value, un, percent) => {
@@ -44,6 +48,15 @@ class Examples extends React.Component {
     this.setState(prevState => ({ disabled: !prevState.disabled }));
   };
 
+  changeRange = () => {
+    this.setState({
+      range: {
+        min: 0,
+        max: 200,
+      },
+    });
+  };
+
   render() {
     const {
       color,
@@ -52,6 +65,7 @@ class Examples extends React.Component {
       skippingValue,
       value,
       disabled,
+      range,
     } = this.state;
     return (
       <section className="options">
@@ -174,6 +188,11 @@ class Examples extends React.Component {
               max: 100,
             }}
           />
+        </div>
+        <div className="examples">
+          <h4>Change range by changing state:</h4>
+          <button onClick={this.changeRange}>Change range</button>
+          <Nouislider start={40} range={range} />
         </div>
       </section>
     );
