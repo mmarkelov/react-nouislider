@@ -15,7 +15,15 @@ describe('isEqual function', () => {
     expect(isEqual(['a', 3], ['a', 3])).toBe(true);
   });
 
+  it('Return right result for comparing objects', () => {
+    expect(isEqual({ min: 3, max: 3 }, { min: 3, max: 3 })).toBe(true);
+  });
+
   it('Return false for comparing values with different types', () => {
     expect(isEqual(3, '3')).toBe(false);
+  });
+
+  it('Return false for comparing objects with different values', () => {
+    expect(isEqual({ min: 3, max: 3 }, { min: 3, max: 1 })).toBe(false);
   });
 });

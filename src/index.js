@@ -23,14 +23,19 @@ class Nouislider extends React.Component {
   }
 
   shouldComponentUpdate(nextProps) {
-    const { start, disabled } = this.props;
-    return !isEqual(nextProps.start, start) || nextProps.disabled !== disabled;
+    const { start, disabled, range } = this.props;
+    return (
+      !isEqual(nextProps.start, start) ||
+      nextProps.disabled !== disabled ||
+      !isEqual(nextProps.range, range)
+    );
   }
 
   componentDidUpdate() {
-    const { start, disabled } = this.props;
+    const { start, disabled, range } = this.props;
     this.slider.set(start);
     this.toggleDisable(disabled);
+    this.updateRange(range);
   }
 
   componentWillUnmount() {
@@ -57,6 +62,11 @@ class Nouislider extends React.Component {
         sliderHTML.setAttribute("disabled", true);
       }
     }
+  };
+
+  updateRange = range => {
+    const sliderHTML = this.sliderContainer.current;
+    sliderHTML.noUiSlider.updateOptions({ range });
   };
 
   createSlider() {
