@@ -225,6 +225,10 @@ cd example && npm install
 npm run dev
 ```
 
+## TODO
+
+- [ ] Find solution for auto release process
+
 You now have examples running on
 `http://localhost:3004`
 
