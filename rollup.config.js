@@ -47,8 +47,7 @@ const commonConfig = {
     }),
 
     nodeResolve({
-      module: true,
-      jsnext: true,
+      mainFields: ['jsnext:main', 'module'],
       browser: true,
     }),
 
