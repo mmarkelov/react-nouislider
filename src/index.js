@@ -33,9 +33,9 @@ class Nouislider extends React.Component {
 
   componentDidUpdate() {
     const { start, disabled, range } = this.props;
+    this.updateRange(range);
     this.slider.set(start);
     this.toggleDisable(disabled);
-    this.updateRange(range);
   }
 
   componentWillUnmount() {
