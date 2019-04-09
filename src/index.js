@@ -27,7 +27,7 @@ class Nouislider extends React.Component {
     return (
       !isEqual(nextProps.start, start) ||
       nextProps.disabled !== disabled ||
-      nextProps.range !== range
+      !isEqual(nextProps.range, range)
     );
   }
 
