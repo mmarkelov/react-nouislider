@@ -1,6 +1,6 @@
 {
   "name": "react-nouislider-example",
-  "version": "2.2.2",
+  "version": "2.3.0",
   "description": "React NoUiSlider implementation",
   "repository": {
     "type": "git",
@@ -43,6 +43,6 @@
     "mini-css-extract-plugin": "^0.5.0",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0",
-    "webpack-dev-server": "^3.2.1"
+    "webpack-dev-server": "^3.3.0"
   }
 }
