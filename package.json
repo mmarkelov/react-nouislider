@@ -14,7 +14,7 @@
     "test:coverage": "jest --coverage ./tests/",
     "coveralls": "jest --coverage && cat ./coverage/lcov.info | coveralls",
     "test:watch": "jest --watch ./tests/",
-    "prepublish": "npm run build",
+    "prepublishOnly": "npm run build",
     "prettier": "prettier --write src/*.js",
     "precommit": "lint-staged"
   },
