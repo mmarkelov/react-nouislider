@@ -1,8 +1,7 @@
-const compareObjects = (obj1, obj2) =>
-  Object.keys(obj1).length === Object.keys(obj2).length &&
-  Object.keys(obj1).every(
-    key => obj2.hasOwnProperty(key) && obj1[key] === obj2[key]
-  );
+const sortObjectKeys = obj =>
+  Object.entries(obj)
+    .sort()
+    .reduce((o, [k, v]) => ((o[k] = v), o), {});
 
 export const isEqual = (val1, val2) => {
   if (typeof val1 === "number" && typeof val2 === "number")
@@ -13,7 +12,10 @@ export const isEqual = (val1, val2) => {
     return JSON.stringify(val1) === JSON.stringify(val2);
   }
   if (typeof val1 === "object" && typeof val2 === "object") {
-    return compareObjects(val1, val2);
+    return (
+      JSON.stringify(sortObjectKeys(val1)) ===
+      JSON.stringify(sortObjectKeys(val2))
+    );
   }
   return false;
 };

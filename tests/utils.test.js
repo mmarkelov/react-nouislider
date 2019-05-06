@@ -16,7 +16,7 @@ describe('isEqual function', () => {
   });
 
   it('Return right result for comparing objects', () => {
-    expect(isEqual({ max: 3, min: 3 }, { min: 3, max: 3 })).toBe(true);
+    expect(isEqual({ max: [3], min: 3 }, { min: 3, max: [3] })).toBe(true);
   });
 
   it('Return false for comparing values with different types', () => {
