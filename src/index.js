@@ -1,60 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
 import nouislider from "nouislider";
 
 import { isEqual } from "./utils";
 
-class Nouislider extends React.Component {
-  sliderContainer = React.createRef();
+const areEqual = (prevProps, nextProps) => {
+  const { start, disabled, range } = prevProps;
+  return (
+    isEqual(nextProps.start, start) &&
+    nextProps.disabled === disabled &&
+    isEqual(nextProps.range, range)
+  );
+};
 
-  componentDidMount() {
-    const { clickablePips, disabled } = this.props;
-    const sliderHTML = this.sliderContainer.current;
-    if (sliderHTML) {
-      this.toggleDisable(disabled);
-      this.createSlider();
-      if (clickablePips)
-        sliderHTML.querySelectorAll(".noUi-value").forEach(pip => {
-          pip.style.cursor = "pointer";
-          pip.addEventListener("click", this.clickOnPip);
-        });
-    }
-  }
+const Nouislider = props => {
+  const [slider, setSlider] = useState(null);
+  const sliderContainer = React.createRef();
 
-  shouldComponentUpdate(nextProps) {
-    const { start, disabled, range } = this.props;
-    return (
-      !isEqual(nextProps.start, start) ||
-      nextProps.disabled !== disabled ||
-      !isEqual(nextProps.range, range)
-    );
-  }
-
-  componentDidUpdate() {
-    const { start, disabled, range } = this.props;
-    this.updateRange(range);
-    this.slider.set(start);
-    this.toggleDisable(disabled);
-  }
-
-  componentWillUnmount() {
-    if (this.slider) this.slider.destroy();
-    if (this.sliderContainer.current) {
-      const value = this.sliderContainer.current.querySelector(".noUi-value");
-      if (value) {
-        value.removeEventListener("click", this.clickOnPip);
-      }
-    }
-  }
-
-  clickOnPip = pip => {
+  const clickOnPip = pip => {
     const value = Number(pip.target.getAttribute("data-value"));
-    this.slider.set(value);
+    slider.set(value);
   };
 
-  toggleDisable = disabled => {
-    const sliderHTML = this.sliderContainer.current;
+  const toggleDisable = disabled => {
+    const sliderHTML = sliderContainer.current;
     if (sliderHTML) {
       if (!disabled) {
         sliderHTML.removeAttribute("disabled");
@@ -64,56 +34,107 @@ class Nouislider extends React.Component {
     }
   };
 
-  updateRange = range => {
-    const sliderHTML = this.sliderContainer.current;
+  const updateRange = range => {
+    const sliderHTML = sliderContainer.current;
     sliderHTML.noUiSlider.updateOptions({ range });
   };
 
-  createSlider() {
-    const { onUpdate, onChange, onSlide, onStart, onEnd, onSet } = this.props;
-    const slider = nouislider.create(this.sliderContainer.current, {
-      ...this.props
+  const createSlider = () => {
+    const { onUpdate, onChange, onSlide, onStart, onEnd, onSet } = props;
+    const sliderComponent = nouislider.create(sliderContainer.current, {
+      ...props
     });
 
-    this.slider = slider;
-
     if (onStart) {
-      slider.on("start", onStart);
+      sliderComponent.on("start", onStart);
     }
 
     if (onSlide) {
-      slider.on("slide", onSlide);
+      sliderComponent.on("slide", onSlide);
     }
 
     if (onUpdate) {
-      slider.on("update", onUpdate);
+      sliderComponent.on("update", onUpdate);
     }
 
     if (onChange) {
-      slider.on("change", onChange);
+      sliderComponent.on("change", onChange);
     }
 
     if (onSet) {
-      slider.on("set", onSet);
+      sliderComponent.on("set", onSet);
     }
 
     if (onEnd) {
-      slider.on("end", onEnd);
+      sliderComponent.on("end", onEnd);
     }
-  }
 
-  render() {
-    const { id, className, style } = this.props;
-    const options = {};
-    if (id) {
-      options.id = id;
+    setSlider(sliderComponent);
+  };
+
+  useEffect(() => {
+    const { disabled } = props;
+    const sliderHTML = sliderContainer.current;
+    if (sliderHTML) {
+      toggleDisable(disabled);
+      createSlider();
     }
-    if (className) {
-      options.className = className;
+    return () => {
+      if (slider) slider.destroy();
+      if (sliderHTML) {
+        sliderHTML.querySelectorAll(".noUi-value").forEach(pip => {
+          pip.removeEventListener("click", clickOnPip);
+        });
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (props.clickablePips) {
+      const sliderHTML = sliderContainer.current;
+      sliderHTML.querySelectorAll(".noUi-value").forEach(pip => {
+        pip.style.cursor = "pointer";
+        pip.addEventListener("click", clickOnPip);
+      });
     }
-    return <div {...options} ref={this.sliderContainer} style={style} />;
+  }, [slider]);
+
+  const { start, disabled, range } = props;
+
+  useEffect(() => {
+    updateRange(range);
+    if (slider) {
+      slider.set(start);
+    }
+    toggleDisable(disabled);
+  }, [start, disabled, range]);
+
+  // shouldComponentUpdate(nextProps) {
+  // 	const { start, disabled, range } = this.props;
+  // 	return (
+  // 		!isEqual(nextProps.start, start) ||
+  // 		nextProps.disabled !== disabled ||
+  // 		!isEqual(nextProps.range, range)
+  // 	);
+  // }
+  //
+  // componentDidUpdate() {
+  // 	const { start, disabled, range } = this.props;
+  // 	this.updateRange(range);
+  // 	this.slider.set(start);
+  // 	this.toggleDisable(disabled);
+  // }
+
+  const { id, className, style } = props;
+  const options = {};
+  if (id) {
+    options.id = id;
   }
-}
+  if (className) {
+    options.className = className;
+  }
+  return <div {...options} ref={sliderContainer} style={style} />;
+};
 
 Nouislider.propTypes = {
   // https://refreshless.com/nouislider/slider-options/#section-animate
@@ -208,4 +229,4 @@ Nouislider.defaultProps = {
   onUpdate: () => {}
 };
 
-export default Nouislider;
+export default React.memo(Nouislider, areEqual);
