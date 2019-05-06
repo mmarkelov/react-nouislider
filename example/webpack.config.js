@@ -3,6 +3,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const reactNoUiSlider = path.resolve('../src');
+const react = path.resolve('../node_modules/react');
+const reactDOM = path.resolve('../node_modules/react-dom');
 
 const vendor = ['react', 'react-dom'];
 
@@ -33,6 +35,8 @@ module.exports = {
   resolve: {
     alias: {
       'nouislider-react': reactNoUiSlider,
+      'react': react,
+      'react-dom': reactDOM
     },
   },
 
