@@ -1,7 +1,6 @@
 import * as React from 'react';
 
 export interface NouisliderProps {
-    accessibility?: boolean;
     animate?: boolean;
     behaviour?: string;
     className?: string;
