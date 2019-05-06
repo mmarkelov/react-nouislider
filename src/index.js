@@ -109,22 +109,6 @@ const Nouislider = props => {
     toggleDisable(disabled);
   }, [start, disabled, range]);
 
-  // shouldComponentUpdate(nextProps) {
-  // 	const { start, disabled, range } = this.props;
-  // 	return (
-  // 		!isEqual(nextProps.start, start) ||
-  // 		nextProps.disabled !== disabled ||
-  // 		!isEqual(nextProps.range, range)
-  // 	);
-  // }
-  //
-  // componentDidUpdate() {
-  // 	const { start, disabled, range } = this.props;
-  // 	this.updateRange(range);
-  // 	this.slider.set(start);
-  // 	this.toggleDisable(disabled);
-  // }
-
   const { id, className, style } = props;
   const options = {};
   if (id) {
