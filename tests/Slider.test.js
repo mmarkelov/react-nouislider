@@ -57,6 +57,19 @@ describe('Slider', () => {
     ).toBe(true);
   });
 
+  test('areEqual return right result', () => {
+    const wrapper = mount(
+        <Nouislider
+            className="test"
+            range={{ min: 0, max: 100 }}
+            start={20}
+            connect
+        />,
+    );
+    wrapper.setProps({ start: 80 });
+    expect(wrapper.render().html().includes('aria-valuenow="80.0"')).toBe(true);
+  });
+
   test('disabled prop should passed correctly', () => {
     const wrapper = mount(
       <Nouislider range={{ min: 0, max: 100 }} start={[20, 80]} disabled />,
