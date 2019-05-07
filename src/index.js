@@ -79,14 +79,6 @@ const Nouislider = props => {
       toggleDisable(disabled);
       createSlider();
     }
-    return () => {
-      if (slider) slider.destroy();
-      if (sliderHTML) {
-        sliderHTML.querySelectorAll(".noUi-value").forEach(pip => {
-          pip.removeEventListener("click", clickOnPip);
-        });
-      }
-    };
   }, []);
 
   useEffect(() => {
@@ -97,6 +89,15 @@ const Nouislider = props => {
         pip.addEventListener("click", clickOnPip);
       });
     }
+    return () => {
+      const sliderHTML = sliderContainer.current;
+      if (slider) slider.destroy();
+      if (sliderHTML) {
+        sliderHTML.querySelectorAll(".noUi-value").forEach(pip => {
+          pip.removeEventListener("click", clickOnPip);
+        });
+      }
+    };
   }, [slider]);
 
   const { start, disabled, range } = props;
