@@ -58,6 +58,17 @@ describe('Slider', () => {
     expect(wrapper.prop('disabled')).toBe(true);
   });
 
+  test('unmount correctly', () => {
+    const wrapper = mount(
+        <Nouislider range={{ min: 0, max: 100 }} start={[20, 80]} disabled />,
+    );
+    wrapper.unmount();
+    const wrapper2 = mount(
+        <Nouislider range={{ min: 0, max: 10 }} start={5} id="unmount" />,
+    );
+    expect(wrapper2.html().includes('id="unmount"')).toBe(true);
+  });
+
   describe('areEqual', () => {
     test('return right result for start', () => {
       const wrapper = mount(
