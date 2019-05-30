@@ -228,6 +228,7 @@ npm run dev
 ## TODO
 
 - [ ] Find solution for auto release process
+- [ ] Todo replace custom example process with **docz**
 
 You now have examples running on
 `http://localhost:3004`
