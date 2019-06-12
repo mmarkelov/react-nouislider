@@ -263,7 +263,7 @@ npm run dev
 ## TODO
 
 - [ ] Find solution for auto release process
-- [ ] Replace example with _docz_
+- [ ] Todo replace custom example process with **docz**
 - [ ] Add test for ref
 
 You now have examples running on
