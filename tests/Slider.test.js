@@ -110,5 +110,7 @@ describe('Slider', () => {
       wrapper.setProps({ range: { min: 0, max: 100 } });
       expect(wrapper.html().includes('aria-valuemax="100.0"')).toBe(true);
     });
+
+    // TODO Add ref test
   });
 });
