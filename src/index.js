@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, forwardRef } from "react";
 import PropTypes from "prop-types";
 
 import nouislider from "nouislider";
@@ -14,9 +14,15 @@ const areEqual = (prevProps, nextProps) => {
   );
 };
 
-const Nouislider = props => {
+const Nouislider = forwardRef((props, ref) => {
   const [slider, setSlider] = useState(null);
   const sliderContainer = React.createRef();
+
+  useEffect(() => {
+    if (ref && ref instanceof Function) {
+      ref(sliderContainer.current);
+    }
+  }, [sliderContainer]);
 
   const clickOnPip = pip => {
     const value = Number(pip.target.getAttribute("data-value"));
@@ -119,7 +125,7 @@ const Nouislider = props => {
     options.className = className;
   }
   return <div {...options} ref={sliderContainer} style={style} />;
-};
+});
 
 Nouislider.propTypes = {
   // https://refreshless.com/nouislider/slider-options/#section-animate
