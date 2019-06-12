@@ -20,6 +20,7 @@ class Examples extends React.Component {
       min: 0,
       max: 100,
     },
+    ref: null,
   };
 
   onUpdate = index => (render, handle, value, un, percent) => {
@@ -57,6 +58,13 @@ class Examples extends React.Component {
     });
   };
 
+  changeByRef = () => {
+    const { ref } = this.state;
+    if (ref && ref.noUiSlider) {
+      ref.noUiSlider.set(20);
+    }
+  };
+
   render() {
     const {
       color,
@@ -66,6 +74,7 @@ class Examples extends React.Component {
       value,
       disabled,
       range,
+      ref,
     } = this.state;
     return (
       <section className="options">
@@ -99,6 +108,22 @@ class Examples extends React.Component {
             range={{
               min: 0,
               max: 100,
+            }}
+          />
+        </div>
+        <div className="examples">
+          <h4>Using ref:</h4>
+          <button onClick={this.changeByRef}>Change with ref</button>
+          <Nouislider
+            ref={instance => {
+              if (instance && !ref) {
+                this.setState({ ref: instance });
+              }
+            }}
+            start={0}
+            range={{
+              min: 0,
+              max: 50,
             }}
           />
         </div>
