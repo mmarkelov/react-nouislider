@@ -153,6 +153,41 @@ const KeyboardSlider = () => (
 );
 ```
 
+### Using with ref:
+
+```js
+class KeyboardSlider extends React.Component {
+  state = { ref: null };
+
+  changeByRef = () => {
+    const { ref } = this.state;
+    if (ref && ref.noUiSlider) {
+      ref.noUiSlider.set(20);
+    }
+  };
+
+  render() {
+    return (
+      <div>
+        <button onClick={this.changeByRef}>Change with ref</button>
+        <Nouislider
+          ref={instance => {
+            if (instance && !ref) {
+              this.setState({ ref: instance });
+            }
+          }}
+          start={0}
+          range={{
+            min: 0,
+            max: 100
+          }}
+        />
+      </div>
+    );
+  }
+}
+```
+
 ### Moving the slider by clicking pips:
 
 ```js
@@ -228,6 +263,8 @@ npm run dev
 ## TODO
 
 - [ ] Find solution for auto release process
+- [ ] Replace example with _docz_
+- [ ] Add test for ref
 
 You now have examples running on
 `http://localhost:3004`
