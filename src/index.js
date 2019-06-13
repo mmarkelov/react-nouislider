@@ -1,4 +1,4 @@
-import React, { useEffect, useState, forwardRef } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
 import nouislider from "nouislider";
@@ -14,26 +14,28 @@ const areEqual = (prevProps, nextProps) => {
   );
 };
 
-const Nouislider = forwardRef((props, ref) => {
+const Nouislider = props => {
   const [slider, setSlider] = useState(null);
   const sliderContainer = React.createRef();
 
   useEffect(() => {
+    const { instanceRef } = props;
     const isCreatedRef =
-      ref && Object.prototype.hasOwnProperty.call(ref, "current");
-    if (ref && ref instanceof Function) {
-      ref(sliderContainer.current);
+      instanceRef &&
+      Object.prototype.hasOwnProperty.call(instanceRef, "current");
+    if (instanceRef && instanceRef instanceof Function) {
+      instanceRef(sliderContainer.current);
     }
 
     if (isCreatedRef) {
       // eslint-disable-next-line no-param-reassign
-      ref.current = sliderContainer.current;
+      instanceRef.current = sliderContainer.current;
     }
 
     return () => {
       if (isCreatedRef) {
         // eslint-disable-next-line no-param-reassign
-        ref.current = null;
+        instanceRef.current = null;
       }
     };
   }, [sliderContainer]);
@@ -139,7 +141,7 @@ const Nouislider = forwardRef((props, ref) => {
     options.className = className;
   }
   return <div {...options} ref={sliderContainer} style={style} />;
-});
+};
 
 Nouislider.propTypes = {
   // https://refreshless.com/nouislider/slider-options/#section-animate

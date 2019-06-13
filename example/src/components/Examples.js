@@ -115,7 +115,7 @@ class Examples extends React.Component {
           <h4>Using ref:</h4>
           <button onClick={this.changeByRef}>Change with ref</button>
           <Nouislider
-            ref={instance => {
+            instanceRef={instance => {
               if (instance && !ref) {
                 this.setState({ ref: instance });
               }

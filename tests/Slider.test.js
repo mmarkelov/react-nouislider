@@ -60,11 +60,11 @@ describe('Slider', () => {
 
   test('unmount correctly', () => {
     const wrapper = mount(
-        <Nouislider range={{ min: 0, max: 100 }} start={[20, 80]} disabled />,
+      <Nouislider range={{ min: 0, max: 100 }} start={[20, 80]} disabled />,
     );
     wrapper.unmount();
     const wrapper2 = mount(
-        <Nouislider range={{ min: 0, max: 10 }} start={5} id="unmount" />,
+      <Nouislider range={{ min: 0, max: 10 }} start={5} id="unmount" />,
     );
     expect(wrapper2.html().includes('id="unmount"')).toBe(true);
   });
@@ -110,7 +110,55 @@ describe('Slider', () => {
       wrapper.setProps({ range: { min: 0, max: 100 } });
       expect(wrapper.html().includes('aria-valuemax="100.0"')).toBe(true);
     });
+  });
 
-    // TODO Add ref test
+  describe('instanceRef', () => {
+    test('functional instanceRef', () => {
+      const refFunc = jest.fn();
+      mount(
+        <Nouislider
+          instanceRef={instance => refFunc(instance)}
+          start={0}
+          range={{
+            min: 0,
+            max: 50,
+          }}
+        />,
+      );
+      expect(refFunc).toHaveBeenCalled();
+    });
+
+    test('instanceRef with React.createRef', () => {
+      const ref = React.createRef();
+      const wrapper = mount(
+        <Nouislider
+          instanceRef={ref}
+          start={0}
+          range={{
+            min: 0,
+            max: 50,
+          }}
+        />,
+      );
+
+      expect(wrapper.find('div').instance()).toEqual(ref.current);
+    });
+
+    test('instanceRef with React.createRef is null after unmount', () => {
+      const ref = React.createRef();
+      const wrapper = mount(
+        <Nouislider
+          instanceRef={ref}
+          start={0}
+          range={{
+            min: 0,
+            max: 50,
+          }}
+        />,
+      );
+      wrapper.unmount();
+
+      expect(ref.current).toBe(null);
+    });
   });
 });

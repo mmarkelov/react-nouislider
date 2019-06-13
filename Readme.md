@@ -171,7 +171,7 @@ class KeyboardSlider extends React.Component {
       <div>
         <button onClick={this.changeByRef}>Change with ref</button>
         <Nouislider
-          ref={instance => {
+          instanceRef={instance => {
             if (instance && !ref) {
               this.setState({ ref: instance });
             }
@@ -264,7 +264,6 @@ npm run dev
 
 - [ ] Find solution for auto release process
 - [ ] Replace custom example process with **docz**
-- [ ] Add test for ref
 
 You now have examples running on
 `http://localhost:3004`
