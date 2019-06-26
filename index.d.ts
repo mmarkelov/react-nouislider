@@ -10,14 +10,15 @@ export interface NouisliderProps {
     disabled?: boolean;
     keyboardSupport?: boolean;
     id?: string;
+    instanceRef?: (instance: React.Ref) => void;
     limit?: number;
     margin?: number;
-    onChange?(): void;
-    onEnd?(): void;
-    onSet?(): void;
-    onSlide?(): void;
-    onStart?(): void;
-    onUpdate?(): void;
+    onChange?: () => void;
+    onEnd?: () => void;
+    onSet?: () => void;
+    onSlide?: () => void;
+    onStart?: () => void;
+    onUpdate?: () => void;
     orientation?: "horizontal" | "vertical";
     padding?: number | number[];
     pips?: object;
@@ -25,8 +26,8 @@ export interface NouisliderProps {
     snap?: boolean;
     start: number | number[] | string | string[];
     step?: number;
-    style?: object;
+    style?: React.CSSProperties;
     tooltips?: boolean | object[];
 }
 
-export default class Nouislider extends React.Component<NouisliderProps, never> { }
+export const Nouislider: React.ComponentType<NouisliderProps>;
