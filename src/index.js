@@ -161,6 +161,7 @@ Nouislider.propTypes = {
   disabled: PropTypes.bool,
   keyboardSupport: PropTypes.bool,
   id: PropTypes.string,
+  instanceRef: PropTypes.oneOf([PropTypes.func, PropTypes.object]),
   // https://refreshless.com/nouislider/slider-options/#section-limit
   limit: PropTypes.number,
   // https://refreshless.com/nouislider/slider-options/#section-margin
@@ -197,7 +198,7 @@ Nouislider.propTypes = {
   ]).isRequired,
   // https://refreshless.com/nouislider/slider-options/#section-step
   step: PropTypes.number,
-  style: PropTypes.object,
+  style: PropTypes.objectOf(PropTypes.string),
   // https://refreshless.com/nouislider/slider-options/#section-tooltips
   tooltips: PropTypes.oneOfType([
     PropTypes.bool,
@@ -221,6 +222,7 @@ Nouislider.defaultProps = {
   limit: null,
   keyboardSupport: true,
   id: null,
+  instanceRef: null,
   padding: 0,
   pips: null,
   snap: false,
