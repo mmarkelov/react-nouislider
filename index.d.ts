@@ -1,5 +1,13 @@
 import * as React from 'react';
 
+interface Callback {
+    /**
+     * Array for both one-handle and two-handle sliders. It contains the current slider values,
+     * with formatting applied.
+     */
+    (values: any[], handle: number, unencodedValues: number[], tap: boolean, positions: number[]): void;
+}
+
 export interface NouisliderProps {
     animate?: boolean;
     behaviour?: string;
@@ -13,12 +21,12 @@ export interface NouisliderProps {
     instanceRef?: (instance: React.Ref) => void;
     limit?: number;
     margin?: number;
-    onChange?: () => void;
-    onEnd?: () => void;
-    onSet?: () => void;
-    onSlide?: () => void;
-    onStart?: () => void;
-    onUpdate?: () => void;
+    onChange?: Callback;
+    onEnd?: Callback;
+    onSet?: Callback;
+    onSlide?: Callback;
+    onStart?: Callback;
+    onUpdate?: Callback;
     orientation?: "horizontal" | "vertical";
     padding?: number | number[];
     pips?: object;
