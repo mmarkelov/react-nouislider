@@ -264,6 +264,7 @@ npm run dev
 
 - [ ] Find solution for auto release process
 - [ ] Replace custom example process with **docz**
+- [ ] Rewrite Typescript declaration
 
 You now have examples running on
 `http://localhost:3004`

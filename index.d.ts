@@ -38,4 +38,4 @@ export interface NouisliderProps {
     tooltips?: boolean | object[];
 }
 
-export const Nouislider: React.ComponentType<NouisliderProps>;
+export default class Nouislider extends React.Component<NouisliderProps> {};
