@@ -8,6 +8,11 @@ interface Callback {
     (values: any[], handle: number, unencodedValues: number[], tap: boolean, positions: number[]): void;
 }
 
+interface Formatter {
+    to(val: number): string;
+    from(val: string): number;
+}
+
 export interface NouisliderProps {
     animate?: boolean;
     behaviour?: string;
@@ -16,6 +21,7 @@ export interface NouisliderProps {
     connect?: boolean[] | boolean;
     direction?: "ltr" | "rtl";
     disabled?: boolean;
+    format?: Formatter;
     keyboardSupport?: boolean;
     id?: string;
     instanceRef?: (instance: React.Ref) => void;
