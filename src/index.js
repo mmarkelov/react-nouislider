@@ -10,7 +10,8 @@ const areEqual = (prevProps, nextProps) => {
   return (
     isEqual(nextProps.start, start) &&
     nextProps.disabled === disabled &&
-    isEqual(nextProps.range, range)
+    isEqual(nextProps.range, range) &&
+    !nextProps.format
   );
 };
 
@@ -159,6 +160,7 @@ Nouislider.propTypes = {
   direction: PropTypes.oneOf(["ltr", "rtl"]),
   // https://refreshless.com/nouislider/more/#section-disable
   disabled: PropTypes.bool,
+  format: PropTypes.object,
   keyboardSupport: PropTypes.bool,
   id: PropTypes.string,
   instanceRef: PropTypes.oneOf([PropTypes.func, PropTypes.object]),
@@ -218,6 +220,7 @@ Nouislider.defaultProps = {
   connect: false,
   direction: "ltr",
   disabled: false,
+  format: null,
   margin: null,
   limit: null,
   keyboardSupport: true,
