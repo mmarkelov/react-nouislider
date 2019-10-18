@@ -24,7 +24,7 @@ export interface NouisliderProps {
     format?: Formatter;
     keyboardSupport?: boolean;
     id?: string;
-    instanceRef?: (instance: React.Ref) => void;
+    instanceRef?: (instance: React.Ref<any>) => void;
     limit?: number;
     margin?: number;
     onChange?: Callback;
@@ -44,4 +44,4 @@ export interface NouisliderProps {
     tooltips?: boolean | object[];
 }
 
-export default class Nouislider extends React.Component<NouisliderProps> {};
+export default class Nouislider extends React.Component<NouisliderProps> {}
