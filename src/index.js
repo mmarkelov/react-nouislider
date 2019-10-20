@@ -10,8 +10,7 @@ const areEqual = (prevProps, nextProps) => {
   return (
     isEqual(nextProps.start, start) &&
     nextProps.disabled === disabled &&
-    isEqual(nextProps.range, range) &&
-    !nextProps.format
+    isEqual(nextProps.range, range)
   );
 };
 
@@ -43,7 +42,9 @@ const Nouislider = props => {
 
   const clickOnPip = pip => {
     const value = Number(pip.target.getAttribute("data-value"));
-    slider.set(value);
+    if (slider) {
+      slider.set(value);
+    }
   };
 
   const toggleDisable = disabled => {
@@ -126,8 +127,8 @@ const Nouislider = props => {
   const { start, disabled, range } = props;
 
   useEffect(() => {
-    updateRange(range);
     if (slider) {
+      updateRange(range);
       slider.set(start);
     }
     toggleDisable(disabled);
