@@ -206,7 +206,9 @@ Nouislider.propTypes = {
   tooltips: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.arrayOf(
+      PropTypes.bool,
       PropTypes.shape({
+        from: PropTypes.func,
         to: PropTypes.func
       })
     )
