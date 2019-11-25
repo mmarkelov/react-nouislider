@@ -31,7 +31,7 @@ const Options = () => (
         DIRECTION - <b>Accepted values</b> : ltr, rtl
       </li>
       <li>
-        TOOLTIPS - <b>Accepted values</b> : false, true, formatter,
+        TOOLTIPS - <b>Accepted values</b> : false, true, 
         array[formatter or true or false, ...]
       </li>
       <li>
