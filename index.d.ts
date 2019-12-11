@@ -41,7 +41,7 @@ export interface NouisliderProps {
     start: number | number[] | string | string[];
     step?: number;
     style?: React.CSSProperties;
-    tooltips?: boolean | object[];
+    tooltips?: boolean | (boolean | Formatter)[];
 }
 
 export default class Nouislider extends React.Component<NouisliderProps> {}
