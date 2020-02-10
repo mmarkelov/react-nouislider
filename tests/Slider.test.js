@@ -110,6 +110,21 @@ describe('Slider', () => {
       wrapper.setProps({ range: { min: 0, max: 100 } });
       expect(wrapper.html().includes('aria-valuemax="100.0"')).toBe(true);
     });
+
+    test('return right result for step', () => {
+      const wrapper = mount(
+          <Nouislider
+              className="test"
+              start={0}
+              range={{ min: 0, max: 50 }}
+              step={1}
+              connect
+              disabled={false}
+          />,
+      );
+      wrapper.setProps({ step: 5 });
+      expect(wrapper.prop('step')).toBe(5);
+    });
   });
 
   describe('instanceRef', () => {

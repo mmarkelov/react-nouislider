@@ -6,8 +6,9 @@ import nouislider from "nouislider";
 import { isEqual } from "./utils";
 
 const areEqual = (prevProps, nextProps) => {
-  const { start, disabled, range } = prevProps;
+  const { start, step, disabled, range } = prevProps;
   return (
+    nextProps.step === step &&
     isEqual(nextProps.start, start) &&
     nextProps.disabled === disabled &&
     isEqual(nextProps.range, range)
@@ -58,9 +59,9 @@ const Nouislider = props => {
     }
   };
 
-  const updateRange = range => {
+  const updateOptions = options => {
     const sliderHTML = sliderContainer.current;
-    sliderHTML.noUiSlider.updateOptions({ range });
+    sliderHTML.noUiSlider.updateOptions(options);
   };
 
   const createSlider = () => {
@@ -124,15 +125,15 @@ const Nouislider = props => {
     };
   }, [slider]);
 
-  const { start, disabled, range } = props;
+  const { start, disabled, range, step } = props;
 
   useEffect(() => {
     if (slider) {
-      updateRange(range);
+      updateOptions({range, step});
       slider.set(start);
     }
     toggleDisable(disabled);
-  }, [start, disabled, range]);
+  }, [start, disabled, range, step]);
 
   const { id, className, style } = props;
   const options = {};
