@@ -64,6 +64,16 @@ const Nouislider = props => {
     sliderHTML.noUiSlider.updateOptions(options);
   };
 
+  const setClickableListeners = () => {
+    if (props.clickablePips) {
+      const sliderHTML = sliderContainer.current;
+      sliderHTML.querySelectorAll(".noUi-value").forEach(pip => {
+        pip.style.cursor = "pointer";
+        pip.addEventListener("click", clickOnPip);
+      });
+    }
+  };
+
   const createSlider = () => {
     const { onUpdate, onChange, onSlide, onStart, onEnd, onSet } = props;
     const sliderComponent = nouislider.create(sliderContainer.current, {
@@ -104,18 +114,7 @@ const Nouislider = props => {
       toggleDisable(disabled);
       createSlider();
     }
-  }, []);
-
-  useEffect(() => {
-    if (props.clickablePips) {
-      const sliderHTML = sliderContainer.current;
-      sliderHTML.querySelectorAll(".noUi-value").forEach(pip => {
-        pip.style.cursor = "pointer";
-        pip.addEventListener("click", clickOnPip);
-      });
-    }
     return () => {
-      const sliderHTML = sliderContainer.current;
       if (slider) slider.destroy();
       if (sliderHTML) {
         sliderHTML.querySelectorAll(".noUi-value").forEach(pip => {
@@ -123,6 +122,12 @@ const Nouislider = props => {
         });
       }
     };
+  }, []);
+
+  useEffect(() => {
+    if (slider) {
+      setClickableListeners()
+    }
   }, [slider]);
 
   const { start, disabled, range, step } = props;
@@ -131,6 +136,7 @@ const Nouislider = props => {
     if (slider) {
       updateOptions({range, step});
       slider.set(start);
+      setClickableListeners()
     }
     toggleDisable(disabled);
   }, [start, disabled, range, step]);
