@@ -9,8 +9,8 @@ interface Callback {
 }
 
 interface Formatter {
-    to(val: number): string;
-    from(val: string): number;
+    to(val: number): string | number;
+    from(val: string | number): number;
 }
 
 export interface NouisliderProps {
