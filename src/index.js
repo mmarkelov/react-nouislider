@@ -67,7 +67,7 @@ const Nouislider = props => {
   const setClickableListeners = () => {
     if (props.clickablePips) {
       const sliderHTML = sliderContainer.current;
-      sliderHTML.querySelectorAll(".noUi-value").forEach(pip => {
+      [].slice.call(sliderHTML.querySelectorAll(".noUi-value")).forEach(pip => {
         pip.style.cursor = "pointer";
         pip.addEventListener("click", clickOnPip);
       });
@@ -117,7 +117,7 @@ const Nouislider = props => {
     return () => {
       if (slider) slider.destroy();
       if (sliderHTML) {
-        sliderHTML.querySelectorAll(".noUi-value").forEach(pip => {
+        [].slice.call(sliderHTML.querySelectorAll(".noUi-value")).forEach(pip => {
           pip.removeEventListener("click", clickOnPip);
         });
       }
