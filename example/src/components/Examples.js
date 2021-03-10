@@ -23,7 +23,7 @@ class Examples extends React.Component {
     ref: null,
   };
 
-  onUpdate = index => (render, handle, value, un, percent) => {
+  onUpdate = index => (render, handle, value) => {
     colors[index] = value[0];
     this.setState({ color: `rgb(${colors.join(',')})` });
   };

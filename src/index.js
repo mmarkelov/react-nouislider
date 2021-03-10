@@ -59,6 +59,40 @@ const Nouislider = props => {
     }
   };
 
+  const { onUpdate, onChange, onSlide, onStart, onEnd, onSet } = props;
+
+  const updateEvents = (sliderComponent) => {
+    if (onStart) {
+      sliderComponent.off("start");
+      sliderComponent.on("start", onStart);
+    }
+
+    if (onSlide) {
+      sliderComponent.off("slide");
+      sliderComponent.on("slide", onSlide);
+    }
+
+    if (onUpdate) {
+      sliderComponent.off("update");
+      sliderComponent.on("update", onUpdate);
+    }
+
+    if (onChange) {
+      sliderComponent.off("change");
+      sliderComponent.on("change", onChange);
+    }
+
+    if (onSet) {
+      sliderComponent.off("set");
+      sliderComponent.on("set", onSet);
+    }
+
+    if (onEnd) {
+      sliderComponent.off("end");
+      sliderComponent.on("end", onEnd);
+    }
+  }
+
   const updateOptions = options => {
     const sliderHTML = sliderContainer.current;
     sliderHTML.noUiSlider.updateOptions(options);
@@ -67,7 +101,7 @@ const Nouislider = props => {
   const setClickableListeners = () => {
     if (props.clickablePips) {
       const sliderHTML = sliderContainer.current;
-      [].slice.call(sliderHTML.querySelectorAll(".noUi-value")).forEach(pip => {
+      [...sliderHTML.querySelectorAll(".noUi-value")].forEach(pip => {
         pip.style.cursor = "pointer";
         pip.addEventListener("click", clickOnPip);
       });
@@ -75,34 +109,11 @@ const Nouislider = props => {
   };
 
   const createSlider = () => {
-    const { onUpdate, onChange, onSlide, onStart, onEnd, onSet } = props;
     const sliderComponent = nouislider.create(sliderContainer.current, {
       ...props
     });
 
-    if (onStart) {
-      sliderComponent.on("start", onStart);
-    }
-
-    if (onSlide) {
-      sliderComponent.on("slide", onSlide);
-    }
-
-    if (onUpdate) {
-      sliderComponent.on("update", onUpdate);
-    }
-
-    if (onChange) {
-      sliderComponent.on("change", onChange);
-    }
-
-    if (onSet) {
-      sliderComponent.on("set", onSet);
-    }
-
-    if (onEnd) {
-      sliderComponent.on("end", onEnd);
-    }
+    updateEvents(sliderComponent);
 
     setSlider(sliderComponent);
   };
@@ -117,7 +128,7 @@ const Nouislider = props => {
     return () => {
       if (slider) slider.destroy();
       if (sliderHTML) {
-        [].slice.call(sliderHTML.querySelectorAll(".noUi-value")).forEach(pip => {
+        [...sliderHTML.querySelectorAll(".noUi-value")].forEach(pip => {
           pip.removeEventListener("click", clickOnPip);
         });
       }
@@ -140,6 +151,12 @@ const Nouislider = props => {
     }
     toggleDisable(disabled);
   }, [start, disabled, range, step]);
+
+  useEffect(() => {
+    if (slider) {
+      updateEvents(slider)
+    }
+  }, [onUpdate, onChange, onSlide, onStart, onEnd, onSet])
 
   const { id, className, style } = props;
   const options = {};
