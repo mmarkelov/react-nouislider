@@ -141,16 +141,16 @@ const Nouislider = props => {
     }
   }, [slider]);
 
-  const { start, disabled, range, step } = props;
+  const { start, disabled, range, step, margin, padding, limit, pips, snap, animate } = props;
 
   useEffect(() => {
     if (slider) {
-      updateOptions({range, step});
+      updateOptions({range, step, padding, limit, pips, snap, animate});
       slider.set(start);
       setClickableListeners()
     }
     toggleDisable(disabled);
-  }, [start, disabled, range, step]);
+  }, [start, disabled, range, step, margin, padding, limit, pips, snap, animate]);
 
   useEffect(() => {
     if (slider) {
