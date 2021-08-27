@@ -145,7 +145,7 @@ const Nouislider = props => {
 
   useEffect(() => {
     if (slider) {
-      updateOptions({range, step, padding, limit, pips, snap, animate});
+      updateOptions({range, step, padding, margin, limit, pips, snap, animate});
       slider.set(start);
       setClickableListeners()
     }
