@@ -31,7 +31,7 @@ yarn add nouislider-react
 ```js
 import React from "react";
 import Nouislider from "nouislider-react";
-import "nouislider/distribute/nouislider.css";
+import "nouislider/dist/nouislider.css";
 
 const Slider = () => (
   <Nouislider range={{ min: 0, max: 100 }} start={[20, 80]} connect />
@@ -45,7 +45,7 @@ const Slider = () => (
 ```js
 import React from "react";
 import Nouislider from "nouislider-react";
-import "nouislider/distribute/nouislider.css";
+import "nouislider/dist/nouislider.css";
 
 import "./colorpicker.css";
 
@@ -91,7 +91,7 @@ class Colorpicker extends React.Component {
 ```js
 import React from "react";
 import Nouislider from "nouislider-react";
-import "nouislider/distribute/nouislider.css";
+import "nouislider/dist/nouislider.css";
 
 class Slider extends React.Component {
   state = {
@@ -138,7 +138,7 @@ class Slider extends React.Component {
 ```js
 import React from "react";
 import Nouislider from "nouislider-react";
-import "nouislider/distribute/nouislider.css";
+import "nouislider/dist/nouislider.css";
 
 const KeyboardSlider = () => (
   <Nouislider
@@ -193,7 +193,7 @@ class KeyboardSlider extends React.Component {
 ```js
 import React from "react";
 import Nouislider from "nouislider-react";
-import "nouislider/distribute/nouislider.css";
+import "nouislider/dist/nouislider.css";
 
 const KeyboardSlider = () => (
   <Nouislider
@@ -213,7 +213,7 @@ const KeyboardSlider = () => (
 ```js
 import React from "react";
 import Nouislider from "nouislider-react";
-import "nouislider/distribute/nouislider.css";
+import "nouislider/dist/nouislider.css";
 
 class KeyboardSlider extends React.Component {
   state = { value: 0 };
