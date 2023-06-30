@@ -109,6 +109,8 @@ const Nouislider = props => {
   };
 
   const createSlider = () => {
+    if (sliderContainer.current.noUiSlider) return;
+
     const sliderComponent = nouislider.create(sliderContainer.current, {
       ...props
     });
