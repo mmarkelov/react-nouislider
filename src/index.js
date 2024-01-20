@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 
 import nouislider from "nouislider";
@@ -16,8 +16,9 @@ const areEqual = (prevProps, nextProps) => {
 };
 
 const Nouislider = props => {
-  const [slider, setSlider] = useState(null);
   const sliderContainer = React.createRef();
+
+  const getSlider = () => (sliderContainer.current || {}).noUiSlider;
 
   useEffect(() => {
     const { instanceRef } = props;
@@ -43,6 +44,7 @@ const Nouislider = props => {
 
   const clickOnPip = pip => {
     const value = Number(pip.target.getAttribute("data-value"));
+    const slider = getSlider();
     if (slider) {
       slider.set(value);
     }
@@ -117,7 +119,7 @@ const Nouislider = props => {
 
     updateEvents(sliderComponent);
 
-    setSlider(sliderComponent);
+    setClickableListeners();
   };
 
   useEffect(() => {
@@ -128,6 +130,7 @@ const Nouislider = props => {
       createSlider();
     }
     return () => {
+      const slider = getSlider();
       if (slider) slider.destroy();
       if (sliderHTML) {
         [...sliderHTML.querySelectorAll(".noUi-value")].forEach(pip => {
@@ -137,15 +140,10 @@ const Nouislider = props => {
     };
   }, []);
 
-  useEffect(() => {
-    if (slider) {
-      setClickableListeners()
-    }
-  }, [slider]);
-
   const { start, disabled, range, step, margin, padding, limit, pips, snap, animate } = props;
 
   useEffect(() => {
+    const slider = getSlider();
     if (slider) {
       updateOptions({range, step, padding, margin, limit, pips, snap, animate});
       slider.set(start);
@@ -155,6 +153,7 @@ const Nouislider = props => {
   }, [start, disabled, range, step, margin, padding, limit, pips, snap, animate]);
 
   useEffect(() => {
+    const slider = getSlider();
     if (slider) {
       updateEvents(slider)
     }
